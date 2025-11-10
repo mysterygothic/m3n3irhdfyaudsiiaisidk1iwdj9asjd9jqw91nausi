@@ -1,0 +1,29 @@
+# Security Headers for GitHub Pages / Cloudflare Pages
+# يتم تطبيقها تلقائياً على جميع الصفحات
+
+/*
+  # Content Security Policy - حماية من XSS
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://*.workers.dev; frame-ancestors 'none';
+  
+  # منع Clickjacking
+  X-Frame-Options: DENY
+  
+  # منع MIME Type Sniffing
+  X-Content-Type-Options: nosniff
+  
+  # تفعيل XSS Protection في المتصفح
+  X-XSS-Protection: 1; mode=block
+  
+  # Referrer Policy
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Permissions Policy
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  
+  # HTTPS Only
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+# صفحات Admin - حماية إضافية
+/admin*.html
+  Cache-Control: no-store, no-cache, must-revalidate
+  X-Robots-Tag: noindex, nofollow

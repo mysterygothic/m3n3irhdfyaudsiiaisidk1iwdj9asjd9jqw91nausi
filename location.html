@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموقع - مطعم ومطبخ الشيخ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition">
+        <div class="page-transition-spinner"></div>
+    </div>
+    
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span class="theme-text" id="themeText">وضع فاتح</span>
+    </button>
+
+    <div class="container">
+        <header>
+            <h1>مطعم ومطبخ الشيخ</h1>
+            <div class="decorative-line"></div>
+            <p class="subtitle">Restaurant & Kitchen</p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="menu" class="nav-btn">المنيو<br>MENU</a>
+            <a href="order" class="nav-btn">اطلب الآن<br>ORDER NOW</a>
+            <a href="location" class="nav-btn active">الموقع<br>LOCATION</a>
+            <a href="review" class="nav-btn">قيمنا<br>REVIEW US</a>
+        </div>
+
+
+        <div class="content-section">
+            <div class="location-section">
+                <h2 class="location-title">Our Location موقعنا</h2>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14690.687259620455!2d36.0855263!3d32.0786667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDA0JzQzLjIiTiAzNsKwMDUnMTcuNCJF!5e0!3m2!1sen!2sus!4v1689840000000!5m2!1sen!2sus"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="address-box">
+                    <div class="address-text">📍 الزرقاء - مربع المسلخ</div>
+                    <div class="address-text" style="font-size: 1.2em; color: #ccc;"> Zarqa</div>
+                    <a href="https://maps.app.goo.gl/z1JGNCHDqNyy5JkeA" target="_blank" class="directions-btn" onclick="trackAction('Get Directions')">احصل على الاتجاهات</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://wa.me/962791504450" target="_blank" aria-label="WhatsApp">
+                <img src="whatsapp.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/alsheikh_resturant/" target="_blank" aria-label="Instagram">
+                <img src="instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/share/1BbwHChiaF/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+                <img src="facebook.png" alt="Facebook">
+            </a>
+        </div>
+        <p class="footer-text">© 2025 مطعم ومطبخ الشيخ - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Track location page view
+        window.addEventListener('load', () => {
+            console.log('Viewed Location Page');
+        });
+    </script>
+</body>
+</html>

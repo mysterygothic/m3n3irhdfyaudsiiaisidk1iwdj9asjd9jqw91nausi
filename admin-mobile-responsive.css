@@ -1,0 +1,430 @@
+/* ========================================
+   Mobile Responsive Styles for Admin Pages
+   Optimized for Ramadan Orders & Driver Orders
+   ======================================== */
+
+/* ==================== RAMADAN ORDERS PAGE ==================== */
+
+@media (max-width: 768px) {
+    /* Header Actions - Stack vertically on mobile */
+    .header-actions {
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100%;
+    }
+    
+    .date-picker {
+        width: 100% !important;
+        justify-content: space-between !important;
+    }
+    
+    .date-picker select {
+        font-size: 14px !important;
+        padding: 8px !important;
+    }
+    
+    /* Stats Grid - 2 columns on mobile */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    
+    .stat-card {
+        padding: 12px !important;
+    }
+    
+    .stat-card h3 {
+        font-size: 14px !important;
+    }
+    
+    .stat-card .stat-value {
+        font-size: 20px !important;
+    }
+    
+    /* Orders Table - Responsive cards */
+    .orders-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .orders-table {
+        min-width: 100%;
+        font-size: 13px !important;
+    }
+    
+    .orders-table th,
+    .orders-table td {
+        padding: 8px 6px !important;
+        font-size: 12px !important;
+    }
+    
+    /* Hide less important columns on small screens */
+    .orders-table th:nth-child(5),
+    .orders-table td:nth-child(5) {
+        display: none;
+    }
+    
+    /* Action buttons - smaller on mobile */
+    .action-btn {
+        padding: 6px 10px !important;
+        font-size: 12px !important;
+        min-width: auto !important;
+    }
+    
+    .action-btn span {
+        font-size: 14px !important;
+    }
+    
+    /* Order Modal - Full screen on mobile */
+    .order-modal .modal-content {
+        width: 95% !important;
+        max-width: 95% !important;
+        margin: 5% auto !important;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .order-modal .modal-header h3 {
+        font-size: 18px !important;
+    }
+    
+    .order-modal .form-group {
+        margin-bottom: 12px !important;
+    }
+    
+    .order-modal label {
+        font-size: 13px !important;
+    }
+    
+    .order-modal input,
+    .order-modal select,
+    .order-modal textarea {
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+    
+    /* Buttons in modal */
+    .modal-footer {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    
+    .modal-footer button {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Search and Filter */
+    .search-filter-container {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    .search-box,
+    .filter-select {
+        width: 100% !important;
+    }
+    
+    /* Add Order Button */
+    .add-order-btn {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens - single column stats */
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Even smaller text */
+    .orders-table th,
+    .orders-table td {
+        padding: 6px 4px !important;
+        font-size: 11px !important;
+    }
+    
+    /* Stack order info vertically */
+    .order-info-row {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+}
+
+/* ==================== DRIVER ORDERS PAGE ==================== */
+
+@media (max-width: 768px) {
+    /* Driver Section Cards */
+    .driver-section {
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .driver-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 15px !important;
+    }
+    
+    .driver-info h3 {
+        font-size: 18px !important;
+    }
+    
+    .driver-summary {
+        text-align: right !important;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .driver-summary .total-amount {
+        font-size: 22px !important;
+    }
+    
+    .driver-summary .orders-count {
+        font-size: 13px !important;
+    }
+    
+    /* Driver Orders Table */
+    .driver-orders-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .driver-orders-table {
+        min-width: 600px;
+        font-size: 13px !important;
+    }
+    
+    .driver-orders-table th,
+    .driver-orders-table td {
+        padding: 8px 6px !important;
+        font-size: 12px !important;
+    }
+    
+    /* Export Button */
+    .export-btn {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+        margin-top: 10px;
+    }
+    
+    /* Date Filter */
+    .date-filter-container {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    .date-filter-container select,
+    .date-filter-container input {
+        width: 100% !important;
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .driver-section {
+        padding: 12px !important;
+    }
+    
+    .driver-info h3 {
+        font-size: 16px !important;
+    }
+    
+    .driver-orders-table {
+        min-width: 500px;
+    }
+    
+    .driver-orders-table th,
+    .driver-orders-table td {
+        padding: 6px 4px !important;
+        font-size: 11px !important;
+    }
+}
+
+/* ==================== GENERAL MOBILE IMPROVEMENTS ==================== */
+
+@media (max-width: 768px) {
+    /* Section Headers */
+    .section-header {
+        flex-direction: column !important;
+        gap: 15px !important;
+        align-items: flex-start !important;
+    }
+    
+    .section-header h2 {
+        font-size: 20px !important;
+    }
+    
+    /* Main Content Padding */
+    .admin-main {
+        padding: 15px !important;
+    }
+    
+    /* Cards and Containers */
+    .card,
+    .container,
+    .section {
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Buttons - Touch Friendly */
+    button,
+    .btn,
+    .button {
+        min-height: 44px !important;
+        padding: 10px 16px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Form Inputs - Touch Friendly */
+    input,
+    select,
+    textarea {
+        min-height: 44px !important;
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 10px !important;
+    }
+    
+    /* Tables - Horizontal Scroll */
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+    
+    /* Modals - Better Mobile Experience */
+    .modal {
+        padding: 10px !important;
+    }
+    
+    .modal-content {
+        border-radius: 12px !important;
+    }
+    
+    .modal-header {
+        padding: 15px !important;
+    }
+    
+    .modal-body {
+        padding: 15px !important;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    
+    .modal-footer {
+        padding: 15px !important;
+    }
+    
+    /* Close Button - Larger Touch Target */
+    .close,
+    .modal-close {
+        font-size: 28px !important;
+        padding: 8px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+    
+    /* Tooltips - Hide on Mobile */
+    .tooltip {
+        display: none !important;
+    }
+    
+    /* Badges and Labels */
+    .badge,
+    .label,
+    .tag {
+        font-size: 11px !important;
+        padding: 4px 8px !important;
+    }
+}
+
+/* ==================== LANDSCAPE MODE ==================== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .modal-content {
+        max-height: 85vh !important;
+    }
+    
+    .modal-body {
+        max-height: 50vh !important;
+    }
+}
+
+/* ==================== DARK MODE MOBILE ADJUSTMENTS ==================== */
+
+body.dark-mode {
+    @media (max-width: 768px) {
+        .driver-section,
+        .card,
+        .container {
+            background: #2d3748 !important;
+        }
+        
+        .driver-orders-table th {
+            background: #1a202c !important;
+        }
+        
+        .driver-orders-table tbody tr:hover {
+            background: #1a202c !important;
+        }
+        
+        input,
+        select,
+        textarea {
+            background: #2d3748 !important;
+            color: #e2e8f0 !important;
+            border-color: #4a5568 !important;
+        }
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+@media (max-width: 768px) {
+    /* Ensure touch targets are at least 44x44px */
+    a,
+    button,
+    input[type="checkbox"],
+    input[type="radio"] {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Better focus indicators for keyboard navigation */
+    *:focus {
+        outline: 2px solid #4299e1 !important;
+        outline-offset: 2px !important;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .mobile-menu-toggle,
+    .admin-sidebar,
+    .theme-toggle-container,
+    .action-btn,
+    .add-order-btn,
+    .export-btn {
+        display: none !important;
+    }
+    
+    .admin-main {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    table {
+        font-size: 10px !important;
+    }
+}

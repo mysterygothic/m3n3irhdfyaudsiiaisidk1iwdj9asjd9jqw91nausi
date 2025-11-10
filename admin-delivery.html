@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة التوصيل - مطعم ومطبخ الشيخ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin-mobile-dark.css">
+    
+    <!-- Security Protection - MUST be first -->
+    <script src="admin-protection.js"></script>
+    <script src="admin-permissions.js"></script>
+</head>
+<body class="admin-body" style="display: none;">
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()"></button>
+    
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Page Transition Overlay -->
+    <div class="page-transition">
+        <div class="page-transition-spinner"></div>
+    </div>
+    
+    <!-- Theme Toggle -->
+    <div class="theme-toggle-container">
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-icon"></span>
+        </div>
+    </div>
+    
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <img src="logo.png" alt="Logo" class="sidebar-logo">
+                <h2>إدارة التوصيل</h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة المنيو
+                </a>
+                <a href="admin-dashboard.html#categories" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة الفئات
+                </a>
+                <a href="admin-ramadan.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    طلبات رمضان
+                </a>
+                <a href="admin-delivery.html" class="admin-nav-item active">
+                    <span class="nav-icon"></span>
+                    إدارة التوصيل
+                </a>
+                <a href="admin-driver-orders.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    طلبات السائقين
+                </a>
+                <a href="admin-customers.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    معلومات الزبائن
+                </a>
+                <a href="admin-inventory.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    الجرد اليومي
+                </a>
+                <a href="admin-users.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة المستخدمين
+                </a>
+                <a href="admin-ai-assistant.html" class="admin-nav-item">
+                    <span class="nav-icon">🤖</span>
+                    AI Assistant
+                </a>
+                <a href="#" class="admin-nav-item" onclick="adminLogout()">
+                    <span class="nav-icon"></span>
+                    تسجيل الخروج
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main delivery-main">
+            <div class="section-header">
+                <h2> إدارة التوصيل والسائقين</h2>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="openAddDriverModal()">
+                        ➕ إضافة سائق جديد
+                    </button>
+                </div>
+            </div>
+
+            <!-- Drivers Stats -->
+            <div class="orders-stats">
+                <div class="stat-card">
+                    <h3>🚗 إجمالي السائقين</h3>
+                    <p class="stat-number" id="totalDrivers">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>✅ السائقين النشطين</h3>
+                    <p class="stat-number" id="activeDrivers">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>📦 طلبات التوصيل</h3>
+                    <p class="stat-number" id="deliveryOrders">0</p>
+                </div>
+            </div>
+
+            <!-- Drivers Table -->
+            <div class="ramadan-orders-container">
+                <div class="table-container">
+                    <table class="ramadan-orders-table">
+                        <thead>
+                            <tr>
+                                <th>الرقم</th>
+                                <th>اسم السائق</th>
+                                <th>رقم التلفون</th>
+                                <th>نوع المركبة</th>
+                                <th>رقم اللوحة</th>
+                                <th>الحالة</th>
+                                <th>ملاحظات</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="driversTableBody">
+                            <tr>
+                                <td colspan="8" class="empty-state">لا يوجد سائقين</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Driver Modal -->
+    <div id="driverModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="driverModalTitle">إضافة سائق جديد</h2>
+                <span class="close" onclick="closeDriverModal()">&times;</span>
+            </div>
+            
+            <form id="driverForm" class="admin-form">
+                <input type="hidden" id="driverId" name="driverId">
+                
+                <div class="form-group">
+                    <label for="driverName">اسم السائق *</label>
+                    <input type="text" id="driverName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="driverPhone">رقم التلفون *</label>
+                    <input type="tel" id="driverPhone" placeholder="0791234567" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="vehicleType">نوع المركبة</label>
+                    <select id="vehicleType">
+                        <option value="سيارة">سيارة</option>
+                        <option value="دراجة نارية">دراجة نارية</option>
+                        <option value="فان">فان</option>
+                        <option value="أخرى">أخرى</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="vehiclePlate">رقم اللوحة</label>
+                    <input type="text" id="vehiclePlate" placeholder="ABC-123">
+                </div>
+                
+                <div class="form-group">
+                    <label for="driverStatus">الحالة</label>
+                    <select id="driverStatus">
+                        <option value="active">نشط</option>
+                        <option value="inactive">غير نشط</option>
+                        <option value="on_leave">في إجازة</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="driverNotes">ملاحظات</label>
+                    <textarea id="driverNotes" rows="3" placeholder="ملاحظات إضافية عن السائق..."></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeDriverModal()">إلغاء</button>
+                    <button type="submit" class="btn-primary">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteDriverModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>تأكيد الحذف</h2>
+                <span class="close" onclick="closeDeleteDriverModal()">&times;</span>
+            </div>
+            <p style="padding: 20px; text-align: center;">هل أنت متأكد من حذف هذا السائق؟</p>
+            <div class="form-actions">
+                <button class="btn-cancel" onclick="closeDeleteDriverModal()">إلغاء</button>
+                <button class="btn-danger" onclick="confirmDeleteDriver()">حذف</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase JS Library (UMD Bundle) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    
+    <!-- Secure Configuration (must load before other scripts) -->
+    <script src="supabase-secure-config.js"></script>
+    
+    <!-- Database Configuration & Functions -->
+    <script src="supabase-db.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="script.js"></script>
+    <script src="admin-secure.js"></script>
+    <script src="admin-mobile-dark.js"></script>
+    <script src="delivery.js"></script>
+    
+    <div style="position: fixed; bottom: 10px; left: 10px; font-size: 11px; opacity: 0.6; color: #666; font-family: 'Poppins', sans-serif;">
+        Coded by Zaid-Alnussirat
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,563 @@
+/* ========================================
+   MOBILE SUPPORT & DARK MODE
+   ======================================== */
+
+/* ==================== HAMBURGER MENU ==================== */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu-toggle:active {
+    transform: scale(0.95);
+}
+
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* ==================== DARK MODE TOGGLE ==================== */
+.theme-toggle-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 900;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+}
+
+.theme-toggle-label {
+    display: none;
+}
+
+.theme-icon {
+    font-size: 24px;
+}
+
+.toggle-switch {
+    display: none;
+}
+
+/* ==================== DARK MODE STYLES ==================== */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.dark-mode .admin-container {
+    background: #0f1419;
+}
+
+.dark-mode .admin-sidebar {
+    background: #1a1f2e;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .admin-sidebar-header {
+    border-bottom-color: #2d3748;
+}
+
+.dark-mode .admin-sidebar-header h2 {
+    color: #e2e8f0;
+}
+
+.dark-mode .admin-nav-item {
+    color: #a0aec0;
+}
+
+.dark-mode .admin-nav-item:hover {
+    background: #2d3748;
+    color: #667eea;
+}
+
+.dark-mode .admin-nav-item.active {
+    background: #2d3748;
+    color: #667eea;
+}
+
+.dark-mode .admin-main {
+    background: #0f1419;
+}
+
+.dark-mode .section-header {
+    border-bottom-color: #2d3748;
+}
+
+.dark-mode .section-header h2 {
+    color: #e2e8f0;
+}
+
+/* Cards & Containers */
+.dark-mode .admin-item-card,
+.dark-mode .category-card,
+.dark-mode .stat-card,
+.dark-mode .table-container,
+.dark-mode .search-container,
+.dark-mode .ramadan-order-form-section,
+.dark-mode .quick-entry-section,
+.dark-mode .drivers-summary,
+.dark-mode .delivery-orders-container {
+    background: #1a1f2e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .admin-item-name,
+.dark-mode .category-info h3,
+.dark-mode .stat-card h3,
+.dark-mode .form-header h3,
+.dark-mode .order-header h4 {
+    color: #e2e8f0;
+}
+
+.dark-mode .admin-item-description,
+.dark-mode .category-info p,
+.dark-mode .order-details p {
+    color: #a0aec0;
+}
+
+.dark-mode .order-details strong {
+    color: #e2e8f0;
+}
+
+/* Tables */
+.dark-mode .ramadan-orders-table th {
+    background: #2d3748;
+    color: #e2e8f0;
+}
+
+.dark-mode .ramadan-orders-table td {
+    color: #cbd5e0;
+    border-bottom-color: #2d3748;
+}
+
+.dark-mode .ramadan-orders-table tbody tr:hover {
+    background: #2d3748;
+}
+
+.dark-mode .ramadan-orders-table td strong {
+    color: #e2e8f0;
+}
+
+/* Forms */
+.dark-mode .admin-form label,
+.dark-mode .ramadan-customer-form label,
+.dark-mode .quick-entry-form label,
+.dark-mode .driver-assignment label {
+    color: #e2e8f0;
+}
+
+.dark-mode .admin-form input,
+.dark-mode .admin-form select,
+.dark-mode .admin-form textarea,
+.dark-mode .search-container input,
+.dark-mode .ramadan-customer-form input,
+.dark-mode .ramadan-customer-form textarea,
+.dark-mode .quick-entry-form input,
+.dark-mode .quick-entry-form select,
+.dark-mode .driver-select {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+.dark-mode .admin-form input:focus,
+.dark-mode .admin-form select:focus,
+.dark-mode .admin-form textarea:focus,
+.dark-mode .search-container input:focus,
+.dark-mode .driver-select:focus {
+    border-color: #667eea;
+}
+
+.dark-mode .radio-label {
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+.dark-mode .radio-label:hover {
+    border-color: #667eea;
+}
+
+.dark-mode .form-section {
+    border-color: #4a5568;
+}
+
+.dark-mode .form-section h3 {
+    color: #e2e8f0;
+}
+
+/* Theme Toggle in Dark Mode */
+.dark-mode .theme-toggle-container {
+    border-top-color: #2d3748;
+}
+
+.dark-mode .theme-toggle {
+    background: #2d3748;
+}
+
+.dark-mode .theme-toggle:hover {
+    background: #3a4556;
+}
+
+.dark-mode .theme-toggle-label {
+    color: #e2e8f0;
+}
+
+/* Other Elements */
+.dark-mode .empty-state {
+    color: #718096;
+}
+
+.dark-mode .delivery-order-card {
+    background: #1a1f2e;
+    border-color: #2d3748;
+}
+
+.dark-mode .delivery-order-card:hover {
+    border-color: #667eea;
+}
+
+.dark-mode .order-header {
+    border-bottom-color: #2d3748;
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .admin-sidebar {
+        position: fixed;
+        left: 0;
+        right: auto;
+        transform: translateX(-100%);
+        z-index: 1000;
+        transition: transform 0.3s ease;
+        width: 280px;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .admin-sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .admin-main {
+        margin-right: 0;
+        padding: 80px 20px 20px 20px;
+    }
+    
+    /* Section Header Mobile */
+    .section-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .header-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .header-actions button,
+    .header-actions .btn-primary,
+    .header-actions .btn-success,
+    .header-actions .btn-warning {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    
+    /* Stats Cards Mobile */
+    .orders-stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-card h3 {
+        font-size: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    /* Tables Mobile - Make them scrollable */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 12px;
+    }
+    
+    .ramadan-orders-table {
+        min-width: 800px;
+        font-size: 0.85rem;
+    }
+    
+    .ramadan-orders-table th,
+    .ramadan-orders-table td {
+        padding: 10px 8px;
+        white-space: nowrap;
+    }
+    
+    /* Action Buttons Mobile */
+    .action-btn {
+        padding: 8px 10px;
+        font-size: 1.1rem;
+        min-width: 36px;
+        min-height: 36px;
+    }
+    
+    /* Forms Mobile */
+    .admin-form .form-row {
+        flex-direction: column;
+    }
+    
+    .admin-form .form-group {
+        width: 100%;
+    }
+    
+    .admin-form input,
+    .admin-form select,
+    .admin-form textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Modal Mobile */
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        margin: 20px auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .modal-content.large-modal {
+        width: 95%;
+        max-width: 95%;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-actions button {
+        width: 100%;
+        padding: 12px;
+    }
+    
+    /* Category Filter Mobile */
+    .category-filter {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+        white-space: nowrap;
+    }
+    
+    .filter-btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+    
+    /* Items Grid Mobile */
+    .admin-items-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .admin-item-card {
+        padding: 15px;
+    }
+    
+    .admin-item-image {
+        height: 150px;
+    }
+    
+    /* Categories List Mobile */
+    .categories-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Delivery Orders Mobile */
+    .delivery-orders-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .delivery-order-card {
+        padding: 15px;
+    }
+    
+    /* Search Container Mobile */
+    .search-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-container input {
+        width: 100%;
+    }
+    
+    /* Ramadan Form Mobile */
+    .ramadan-customer-form,
+    .quick-entry-form {
+        padding: 15px;
+    }
+    
+    .form-section {
+        padding: 15px;
+    }
+    
+    /* Drivers Summary Mobile */
+    .drivers-summary {
+        padding: 15px;
+    }
+    
+    .driver-card {
+        padding: 12px;
+    }
+    
+    /* Hide theme toggle on very small screens */
+    @media (max-width: 400px) {
+        .theme-toggle-label span {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-menu-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        top: 15px;
+        left: 15px;
+    }
+    
+    .admin-sidebar {
+        width: 250px;
+    }
+    
+    .admin-main {
+        padding: 70px 15px 15px 15px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .stat-card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .ramadan-orders-table {
+        font-size: 0.8rem;
+    }
+    
+    .action-btn {
+        padding: 6px 8px;
+        font-size: 1rem;
+        min-width: 32px;
+        min-height: 32px;
+    }
+    
+    .modal-content {
+        margin: 10px auto;
+    }
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.admin-sidebar.open {
+    animation: slideInFromLeft 0.3s ease-out;
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+.mobile-menu-toggle:focus,
+.theme-toggle:focus {
+    outline: 3px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .admin-sidebar,
+    .mobile-overlay,
+    .mobile-menu-toggle,
+    .theme-toggle,
+    .toggle-switch,
+    .toggle-switch::after {
+        transition: none;
+    }
+}
+

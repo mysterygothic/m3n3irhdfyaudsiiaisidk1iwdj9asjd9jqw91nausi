@@ -1,0 +1,388 @@
+/* ========================================
+   MOBILE OPTIMIZATION FOR DRIVER ORDERS PAGE
+   ======================================== */
+
+/* Mobile Responsive - Tablets and Below */
+@media (max-width: 768px) {
+    /* Section Header */
+    .section-header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .header-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .header-actions button {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+    
+    /* Driver Section */
+    .driver-section {
+        padding: 15px;
+        margin: 15px;
+        border-radius: 10px;
+    }
+    
+    .driver-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .driver-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .driver-stats {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .stat-item {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+    
+    .stat-item strong {
+        font-size: 1.2rem;
+    }
+    
+    /* Orders List */
+    .orders-list {
+        gap: 12px;
+    }
+    
+    .order-item {
+        padding: 12px;
+        border-radius: 8px;
+    }
+    
+    .order-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    
+    .order-number {
+        font-size: 0.95rem;
+    }
+    
+    .order-time {
+        font-size: 0.85rem;
+    }
+    
+    .order-details {
+        padding: 10px 0;
+    }
+    
+    .order-details p {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+    
+    .order-details strong {
+        font-size: 0.9rem;
+    }
+    
+    /* Order Items List */
+    .order-items {
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 0.85rem;
+    }
+    
+    .order-items li {
+        padding: 6px 0;
+    }
+    
+    /* Order Actions */
+    .order-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .order-actions button {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    /* Status Badges */
+    .status-badge,
+    .status-pending,
+    .status-completed {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        border-radius: 6px;
+    }
+    
+    /* Total Amount */
+    .order-total {
+        font-size: 1rem;
+        padding: 10px;
+        border-radius: 6px;
+    }
+    
+    /* Empty State */
+    .empty-orders {
+        padding: 30px 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Summary Cards */
+    .summary-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 0 15px;
+    }
+    
+    .summary-card {
+        padding: 15px;
+    }
+    
+    .summary-card h4 {
+        font-size: 0.9rem;
+    }
+    
+    .summary-card .amount {
+        font-size: 1.6rem;
+    }
+    
+    /* Date Filter */
+    .date-filter {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .date-filter label {
+        font-size: 0.9rem;
+    }
+    
+    .date-filter input {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+    
+    .date-filter button {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+    
+    /* Print Button */
+    .print-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+        margin: 10px 0;
+    }
+    
+    /* Modal Adjustments */
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        margin: 10px auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .modal-content .order-details {
+        font-size: 0.9rem;
+    }
+    
+    /* Form Actions in Modal */
+    .modal-content .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .modal-content .form-actions button {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+/* Mobile Responsive - Small Phones */
+@media (max-width: 480px) {
+    .section-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .driver-section {
+        padding: 12px;
+        margin: 12px;
+    }
+    
+    .driver-header h3 {
+        font-size: 1rem;
+    }
+    
+    .driver-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-item {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    
+    .stat-item strong {
+        font-size: 1.1rem;
+    }
+    
+    .order-item {
+        padding: 10px;
+    }
+    
+    .order-number {
+        font-size: 0.9rem;
+    }
+    
+    .order-time {
+        font-size: 0.8rem;
+    }
+    
+    .order-details p {
+        font-size: 0.85rem;
+    }
+    
+    .order-items {
+        font-size: 0.8rem;
+    }
+    
+    .order-actions button {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+    
+    .status-badge,
+    .status-pending,
+    .status-completed {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .order-total {
+        font-size: 0.95rem;
+        padding: 8px;
+    }
+    
+    .summary-card {
+        padding: 12px;
+    }
+    
+    .summary-card h4 {
+        font-size: 0.85rem;
+    }
+    
+    .summary-card .amount {
+        font-size: 1.4rem;
+    }
+}
+
+/* Landscape Mode for Phones */
+@media (max-width: 768px) and (orientation: landscape) {
+    .driver-section {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .modal-content {
+        max-height: 85vh;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    button,
+    .order-actions button,
+    .date-filter button,
+    .print-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Better spacing for touch */
+    .order-item {
+        margin-bottom: 15px;
+    }
+    
+    .order-actions {
+        gap: 10px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .admin-sidebar,
+    .mobile-menu-toggle,
+    .theme-toggle-container,
+    .header-actions,
+    .order-actions,
+    .date-filter,
+    .print-btn {
+        display: none !important;
+    }
+    
+    .admin-main {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .driver-section {
+        page-break-inside: avoid;
+        margin: 10px 0;
+        padding: 10px;
+    }
+    
+    .order-item {
+        page-break-inside: avoid;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 5px 0;
+    }
+}
+
+/* Additional Responsive Utilities */
+@media (max-width: 768px) {
+    /* Hide less important info on mobile */
+    .hide-on-mobile {
+        display: none !important;
+    }
+    
+    /* Stack elements vertically */
+    .stack-on-mobile {
+        flex-direction: column !important;
+    }
+    
+    /* Full width on mobile */
+    .full-width-mobile {
+        width: 100% !important;
+    }
+    
+    /* Reduce padding on mobile */
+    .reduce-padding-mobile {
+        padding: 10px !important;
+    }
+}

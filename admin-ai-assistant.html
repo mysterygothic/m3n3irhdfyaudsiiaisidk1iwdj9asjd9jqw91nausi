@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - مطعم ومطبخ الشيخ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin-mobile-dark.css">
+    <link rel="stylesheet" href="admin-mobile-responsive.css">
+    
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    
+    <!-- Security Protection - MUST be first -->
+    <script src="admin-protection.js"></script>
+    <script src="admin-permissions.js"></script>
+    
+    <style>
+        .ai-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .ai-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .ai-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+        }
+        
+        .ai-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .ai-settings-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .ai-settings-card h3 {
+            margin: 0 0 20px 0;
+            color: #2c3e50;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .api-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .api-status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .api-status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .chat-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 80%;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message.user {
+            background: #667eea;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .message.ai {
+            background: white;
+            color: #2c3e50;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .message.system {
+            background: #fff3cd;
+            color: #856404;
+            text-align: center;
+            margin: 10px auto;
+            max-width: 90%;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            text-align: center;
+            margin: 10px auto;
+            max-width: 90%;
+        }
+        
+        .message-time {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+        
+        .chat-input-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 14px;
+            resize: none;
+            font-family: inherit;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .send-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .example-prompts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .example-prompt {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .example-prompt:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .example-prompt h4 {
+            margin: 0 0 8px 0;
+            color: #667eea;
+            font-size: 14px;
+        }
+        
+        .example-prompt p {
+            margin: 0;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+        
+        .loading-dots span {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Dark Mode */
+        body.dark-mode .ai-settings-card,
+        body.dark-mode .chat-container {
+            background: #2d3748;
+        }
+        
+        body.dark-mode .ai-settings-card h3 {
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .form-group label {
+            color: #cbd5e0;
+        }
+        
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group select,
+        body.dark-mode .chat-input {
+            background: #1a202c;
+            color: #e2e8f0;
+            border-color: #4a5568;
+        }
+        
+        body.dark-mode .chat-messages {
+            background: #1a202c;
+        }
+        
+        body.dark-mode .message.ai {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-color: #4a5568;
+        }
+        
+        body.dark-mode .example-prompt {
+            background: #1a202c;
+            border-color: #4a5568;
+        }
+        
+        body.dark-mode .example-prompt:hover {
+            background: #2d3748;
+        }
+    </style>
+</head>
+<body class="admin-body" style="display: none;">
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()"></button>
+    
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Page Transition Overlay -->
+    <div class="page-transition">
+        <div class="page-transition-spinner"></div>
+    </div>
+    
+    <!-- Theme Toggle -->
+    <div class="theme-toggle-container">
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-icon"></span>
+        </div>
+    </div>
+    
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <img src="logo.png" alt="Logo" class="sidebar-logo">
+                <h2>AI Assistant</h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة المنيو
+                </a>
+                <a href="admin-dashboard.html#categories" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة الفئات
+                </a>
+                <a href="admin-ramadan.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    طلبات رمضان
+                </a>
+                <a href="admin-delivery.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة التوصيل
+                </a>
+                <a href="admin-driver-orders.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    طلبات السائقين
+                </a>
+                <a href="admin-customers.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    معلومات الزبائن
+                </a>
+                <a href="admin-inventory.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    الجرد اليومي
+                </a>
+                <a href="admin-users.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة المستخدمين
+                </a>
+                <a href="admin-ai-assistant.html" class="admin-nav-item active">
+                    <span class="nav-icon">🤖</span>
+                    AI Assistant
+                </a>
+                <a href="#" class="admin-nav-item" onclick="adminLogout()">
+                    <span class="nav-icon"></span>
+                    تسجيل الخروج
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="ai-container">
+                <!-- Header -->
+                <div class="ai-header">
+                    <h1>🤖 AI Assistant لطلبات رمضان</h1>
+                    <p>مرحبا انا نظام ذكاء اصطناعي ابعثلي اوردر ورح اضيفه لطلبات رمضان</p>
+                </div>
+                
+                <!-- Settings Card -->
+                <div class="ai-settings-card">
+                    <h3>
+                         إعدادات Google Gemini 2.5 Flash
+                        <span id="apiStatus" class="api-status disconnected">
+                             غير متصل
+                        </span>
+                    </h3>
+                    
+                    <div class="form-group" style="display: none;">
+                        <label for="apiProvider">مزود الخدمة</label>
+                        <select id="apiProvider" onchange="updateAPIProvider()">
+                            <option value="gemini">Google Gemini</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="apiKey">Google Gemini API Key</label>
+                        <input type="password" id="apiKey" placeholder="أدخل API Key هنا (مثال: AIzaSy...)" onchange="saveAPIKey()">
+                        <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">
+                            احصل على API Key مجاني من: <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color: #667eea;">makersuite.google.com</a>
+                            <br> سيتم حفظ API Key في قاعدة البيانات تلقائياً
+                        </small>
+                    </div>
+                    
+                    <div class="form-group" style="display: none;">
+                        <label for="aiModel">النموذج</label>
+                        <select id="aiModel">
+                            <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="background: #f0f4ff; padding: 15px; border-radius: 10px; border: 2px solid #667eea;">
+                        <label for="orderDate" style="color: #667eea; font-size: 15px;"> تاريخ الطلب</label>
+                        <input type="date" id="orderDate" style="cursor: pointer; font-size: 15px; font-weight: 600;">
+                        <small style="color: #667eea; font-size: 12px; margin-top: 5px; display: block; font-weight: 500;">
+                             اختر التاريخ الذي تريد إضافة الطلب فيه (افتراضياً: اليوم)
+                        </small>
+                    </div>
+                </div>
+                
+                <!-- Chat Container -->
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message system">
+                             مرحباً! ابعتلي اوردر ورح اضيفه لطلبات رمضان جربني 
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <textarea 
+                            id="chatInput" 
+                            class="chat-input" 
+                            placeholder="مثال: أحمد محمد، سدر منسف دجاجة، توصيل حي رمزي، 0781504450، بدون لوز، 8 + 1"
+                            rows="2"
+                            onkeydown="handleEnterKey(event)"
+                        ></textarea>
+                        <button class="send-btn" onclick="sendMessage()" id="sendBtn">
+                            إرسال 
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Example Prompts -->
+                <div class="ai-settings-card">
+                    <h3> أمثلة على الطلبات</h3>
+                    <div class="example-prompts">
+                        <div class="example-prompt" onclick="useExample(0)">
+                            <h4>طلب كامل</h4>
+                            <p>زيد النصيرات سدر منسف دجاجة توصيل حي رمزي 0779090114 بدون لوز 8 + 1</p>
+                        </div>
+                        <div class="example-prompt" onclick="useExample(1)">
+                            <h4>طلب متعدد</h4>
+                            <p>سارة علي، 2 سدر منسف دجاجة + 1 سدر منسف لحم، حي الجامعة، 0791234567، 16 + 1</p>
+                        </div>
+                        <div class="example-prompt" onclick="useExample(2)">
+                            <h4>طلب مع ملاحظات</h4>
+                            <p>خالد حسن، سدر منسف دجاجة، شارع الملك حسين، 0781112233، بدون بصل وبدون لوز، 8 + 1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    
+    <!-- Secure Configuration (must load before other scripts) -->
+    <script src="supabase-secure-config.js"></script>
+    
+    <script src="supabase-db.js"></script>
+    <script src="admin-secure.js"></script>
+    <script src="ramadan.js"></script>
+    <script src="admin-ai-assistant.js"></script>
+</body>
+</html>

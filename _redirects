@@ -1,0 +1,6 @@
+# GitHub Pages redirects for clean URLs
+/menu /menu.html 200
+/order /order.html 200
+/location /location.html 200
+/review /review.html 200
+/food-menu /food-menu.html 200

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم ومطبخ الشيخ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition">
+        <div class="page-transition-spinner"></div>
+    </div>
+    
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span class="theme-text" id="themeText">وضع فاتح</span>
+    </button>
+
+    <div class="container">
+        <header>
+            <h1>مطعم ومطبخ الشيخ</h1>
+            <div class="decorative-line"></div>
+            <p class="subtitle">Restaurant & Kitchen</p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="menu" class="nav-btn active">المنيو<br>MENU</a>
+            <a href="order" class="nav-btn">اطلب الآن<br>ORDER NOW</a>
+            <a href="location" class="nav-btn">الموقع<br>LOCATION</a>
+            <a href="review" class="nav-btn">قيمنا<br>REVIEW US</a>
+        </div>
+
+
+        <div class="content-section">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-image-container">
+                        <img src="1.webp" alt="Menu Page 1" class="menu-image" loading="lazy">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image-container">
+                        <img src="2.webp" alt="Menu Page 2" class="menu-image" loading="lazy">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image-container">
+                        <img src="3.webp" alt="Menu Page 3" class="menu-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Form Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>اطلب من هنا</h2>
+                <span class="close" onclick="closeOrderForm()">&times;</span>
+            </div>
+            <form id="orderForm" class="order-form">
+                <div class="form-group">
+                    <label for="customerName">اسم العميل *</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phoneNumber">رقم الهاتف *</label>
+                    <div class="phone-input">
+                        <span class="phone-prefix">+962</span>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="791504450" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="orderType">الطلب *</label>
+                    <select id="orderType" name="orderType" required>
+                        <option value="">اختر نوع الطلب</option>
+                        <option value=" مندي"> مندي</option>
+                        <option value="برياني">برياني</option>
+                        <option value="زرب">زرب</option>
+                        <option value="قدرة">قدرة</option>
+                        <option value="كبسة">كبسة</option>
+                        <option value="فريكة">فريكة</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="meatType">لحم او دجاج *</label>
+                    <select id="meatType" name="meatType" required>
+                        <option value="">اختر النوع</option>
+                        <option value="دجاج">دجاج</option>
+                        <option value="لحم">لحم</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="amount">الكمية *</label>
+                    <select id="amount" name="amount" required>
+                        <option value="">اختر الكمية</option>
+                        <option value="سدر دجاجة">سدر دجاجة</option>
+                        <option value="سدر دجاجتين">سدر دجاجتين</option>
+                        <option value="سدر ثلاث جاجات">سدر ثلاث جاجات</option>
+                        <option value="سدر جاجة ونص">سدر جاجة ونص</option>
+                        <option value="سدر جاجتين ونص">سدر جاجتين ونص</option>
+                        <option value="1 ك">1 ك</option>
+                        <option value="2 ك">2 ك</option>
+                        <option value="3 ك">3 ك</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">ملاحظات إضافية (اختياري)</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="أي ملاحظات خاصة بالطلب..."></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" onclick="closeOrderForm()">إلغاء</button>
+                    <button type="submit" class="submit-btn">إرسال الطلب</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://wa.me/962791504450" target="_blank" aria-label="WhatsApp">
+                <img src="whatsapp.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/alsheikh_resturant/" target="_blank" aria-label="Instagram">
+                <img src="instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/share/1BbwHChiaF/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+                <img src="facebook.png" alt="Facebook">
+            </a>
+        </div>
+        <p class="footer-text">© 2025 مطعم ومطبخ الشيخ - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Track menu page view (since menu is now the default content)
+        window.addEventListener('load', () => {
+            console.log('Viewed Menu Page');
+        });
+    </script>
+</body>
+</html>

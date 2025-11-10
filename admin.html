@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل دخول الإدارة - مطعم ومطبخ الشيخ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+    <!-- Page Transition Overlay -->
+    <div class="page-transition">
+        <div class="page-transition-spinner"></div>
+    </div>
+    
+    <div class="admin-login-container">
+        <div class="admin-login-card">
+            <div class="admin-header">
+                <img src="logo.png" alt="Logo" class="admin-logo">
+                <h1>تسجيل دخول الإدارة</h1>
+                <p>مطعم ومطبخ الشيخ</p>
+            </div>
+            
+            <form id="adminLoginForm" class="admin-login-form">
+                <div class="form-group">
+                    <label for="adminUsername">اسم المستخدم</label>
+                    <input type="text" id="adminUsername" name="username" required autofocus>
+                </div>
+                
+                <div class="form-group">
+                    <label for="adminPassword">كلمة المرور</label>
+                    <input type="password" id="adminPassword" name="password" required>
+                </div>
+                
+                <div id="errorMessage" class="error-message"></div>
+                
+                <button type="submit" class="admin-login-btn">
+                    <span class="btn-text">تسجيل الدخول</span>
+                    <span class="btn-loader" style="display: none;">جاري التحميل...</span>
+                </button>
+            </form>
+            
+            <div class="admin-login-footer">
+                <a href="/" class="back-link">← العودة للموقع</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    
+    <!-- Secure Configuration (must load before admin-secure.js) -->
+    <script src="supabase-secure-config.js"></script>
+    
+    <script src="script.js"></script>
+    <script src="admin-secure.js"></script>
+</body>
+</html>
+

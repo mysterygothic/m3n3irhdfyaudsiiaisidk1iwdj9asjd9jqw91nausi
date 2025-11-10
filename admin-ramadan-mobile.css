@@ -1,0 +1,415 @@
+/* ========================================
+   MOBILE OPTIMIZATION FOR RAMADAN & DRIVER ORDERS
+   ======================================== */
+
+/* Mobile Responsive - Tablets and Below */
+@media (max-width: 768px) {
+    /* Section Header */
+    .section-header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .header-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .header-actions button,
+    .header-actions .btn-primary,
+    .header-actions .btn-success {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        white-space: nowrap;
+    }
+    
+    /* Stats Cards */
+    .orders-stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 0 15px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    /* Ramadan Form Section */
+    .ramadan-order-form-section,
+    .quick-entry-section {
+        padding: 15px;
+        margin: 15px;
+    }
+    
+    .form-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* Customer Form */
+    .ramadan-customer-form {
+        padding: 15px;
+    }
+    
+    .ramadan-customer-form .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .ramadan-customer-form label {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+    
+    .ramadan-customer-form input,
+    .ramadan-customer-form textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 10px;
+    }
+    
+    /* Radio Buttons for Delivery Type */
+    .delivery-type-options {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .radio-label {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    
+    /* Items Selection */
+    .items-selection {
+        gap: 10px;
+    }
+    
+    .item-card {
+        padding: 12px;
+    }
+    
+    .item-card h4 {
+        font-size: 0.95rem;
+    }
+    
+    .item-card .item-price {
+        font-size: 0.9rem;
+    }
+    
+    .quantity-controls {
+        gap: 8px;
+    }
+    
+    .quantity-controls button {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    
+    .quantity-controls input {
+        width: 50px;
+        font-size: 0.95rem;
+        padding: 6px;
+    }
+    
+    /* Order Summary */
+    .order-summary {
+        padding: 15px;
+        font-size: 0.95rem;
+    }
+    
+    .order-summary h4 {
+        font-size: 1rem;
+    }
+    
+    /* Form Actions */
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .form-actions button {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    
+    /* Orders Container */
+    .ramadan-orders-container {
+        padding: 15px;
+    }
+    
+    /* Table Container - Make Scrollable */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -15px;
+        padding: 0 15px;
+    }
+    
+    .ramadan-orders-table {
+        min-width: 900px;
+        font-size: 0.85rem;
+    }
+    
+    .ramadan-orders-table th,
+    .ramadan-orders-table td {
+        padding: 10px 8px;
+        white-space: nowrap;
+    }
+    
+    .ramadan-orders-table th {
+        font-size: 0.85rem;
+    }
+    
+    /* Action Buttons */
+    .action-btn {
+        padding: 6px 8px;
+        font-size: 1rem;
+        min-width: 32px;
+        min-height: 32px;
+    }
+    
+    /* Status Badges */
+    .badge {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+    
+    /* Driver Assignment */
+    .driver-assignment {
+        padding: 12px;
+    }
+    
+    .driver-assignment label {
+        font-size: 0.9rem;
+    }
+    
+    .driver-select {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 10px;
+    }
+    
+    /* Drivers Summary */
+    .drivers-summary {
+        padding: 15px;
+        margin: 15px;
+    }
+    
+    .drivers-summary h3 {
+        font-size: 1.1rem;
+    }
+    
+    .driver-card {
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+    
+    .driver-card h4 {
+        font-size: 0.95rem;
+    }
+    
+    .driver-card p {
+        font-size: 0.85rem;
+    }
+    
+    /* Quick Entry Form */
+    .quick-entry-form {
+        padding: 15px;
+    }
+    
+    .quick-entry-form .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .quick-entry-form label {
+        font-size: 0.9rem;
+    }
+    
+    .quick-entry-form input,
+    .quick-entry-form select {
+        font-size: 16px;
+        padding: 10px;
+    }
+    
+    /* Modal Adjustments */
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        margin: 10px auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .modal-content .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .modal-content label {
+        font-size: 0.9rem;
+    }
+    
+    .modal-content input,
+    .modal-content select,
+    .modal-content textarea {
+        font-size: 16px;
+        padding: 10px;
+    }
+    
+    /* Search Container */
+    .search-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .search-container input {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+    
+    /* Empty State */
+    .empty-state {
+        padding: 30px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile Responsive - Small Phones */
+@media (max-width: 480px) {
+    .section-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .stat-card {
+        padding: 12px;
+    }
+    
+    .stat-card h3 {
+        font-size: 0.85rem;
+    }
+    
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    
+    .ramadan-orders-table {
+        font-size: 0.8rem;
+    }
+    
+    .ramadan-orders-table th,
+    .ramadan-orders-table td {
+        padding: 8px 6px;
+    }
+    
+    .action-btn {
+        padding: 5px 7px;
+        font-size: 0.9rem;
+        min-width: 28px;
+        min-height: 28px;
+    }
+    
+    .badge {
+        padding: 3px 6px;
+        font-size: 0.7rem;
+    }
+    
+    .form-actions button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .quantity-controls button {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+    
+    .quantity-controls input {
+        width: 45px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape Mode for Phones */
+@media (max-width: 768px) and (orientation: landscape) {
+    .modal-content {
+        max-height: 85vh;
+    }
+    
+    .ramadan-order-form-section,
+    .quick-entry-section {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    .action-btn,
+    button,
+    .btn-primary,
+    .btn-success,
+    .btn-cancel,
+    .btn-danger {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Better spacing for touch */
+    .ramadan-orders-table td {
+        padding: 12px 10px;
+    }
+    
+    /* Larger checkboxes and radio buttons */
+    input[type="checkbox"],
+    input[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Print Styles - Hide unnecessary elements when printing */
+@media print {
+    .admin-sidebar,
+    .mobile-menu-toggle,
+    .theme-toggle-container,
+    .header-actions,
+    .action-btn,
+    .form-actions {
+        display: none !important;
+    }
+    
+    .admin-main {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .ramadan-orders-table {
+        font-size: 10pt;
+    }
+}

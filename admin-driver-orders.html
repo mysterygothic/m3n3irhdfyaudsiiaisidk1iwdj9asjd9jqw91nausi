@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلبات السائقين - مطعم ومطبخ الشيخ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin-mobile-dark.css">
+    <link rel="stylesheet" href="admin-mobile-responsive.css">
+    
+    <!-- Security Protection - MUST be first -->
+    <script src="admin-protection.js"></script>
+    <script src="admin-permissions.js"></script>
+    <style>
+        .driver-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .driver-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 20px;
+        }
+        
+        .driver-info h3 {
+            color: #2c3e50;
+            font-size: 22px;
+            margin: 0 0 5px 0;
+        }
+        
+        .driver-info p {
+            color: #7f8c8d;
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .driver-summary {
+            text-align: left;
+        }
+        
+        .driver-summary .total-amount {
+            font-size: 28px;
+            font-weight: bold;
+            color: #27ae60;
+            margin: 0;
+        }
+        
+        .driver-summary .orders-count {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin: 5px 0 0 0;
+        }
+        
+        .driver-orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .driver-orders-table th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: right;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .driver-orders-table td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #495057;
+        }
+        
+        .driver-orders-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .no-orders {
+            text-align: center;
+            padding: 40px;
+            color: #95a5a6;
+            font-size: 16px;
+        }
+        
+        .export-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .export-btn:hover {
+            background: #229954;
+            transform: translateY(-2px);
+        }
+        
+        .grand-total-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .grand-total-card h2 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .grand-total-card .amount {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-assigned {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body class="admin-body" style="display: none;">
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()"></button>
+    
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Page Transition Overlay -->
+    <div class="page-transition">
+        <div class="page-transition-spinner"></div>
+    </div>
+    
+    <!-- Theme Toggle -->
+    <div class="theme-toggle-container">
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-icon"></span>
+        </div>
+    </div>
+    
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <img src="logo.png" alt="Logo" class="sidebar-logo">
+                <h2>طلبات السائقين</h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="admin-dashboard.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة المنيو
+                </a>
+                <a href="admin-dashboard.html#categories" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة الفئات
+                </a>
+                <a href="admin-ramadan.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    طلبات رمضان
+                </a>
+                <a href="admin-delivery.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة التوصيل
+                </a>
+                <a href="admin-driver-orders.html" class="admin-nav-item active">
+                    <span class="nav-icon"></span>
+                    طلبات السائقين
+                </a>
+                <a href="admin-customers.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    معلومات الزبائن
+                </a>
+                <a href="admin-inventory.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    الجرد اليومي
+                </a>
+                <a href="admin-users.html" class="admin-nav-item">
+                    <span class="nav-icon"></span>
+                    إدارة المستخدمين
+                </a>
+                <a href="admin-ai-assistant.html" class="admin-nav-item">
+                    <span class="nav-icon">🤖</span>
+                    AI Assistant
+                </a>
+                <a href="#" class="admin-nav-item" onclick="adminLogout()">
+                    <span class="nav-icon"></span>
+                    تسجيل الخروج
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="section-header">
+                <h2> طلبات السائقين والمبالغ النقدية</h2>
+                <div class="header-actions">
+                    <div class="date-picker" style="display:flex; align-items:center; gap:6px; background:#f8f9fa; padding:6px 8px; border-radius:8px;">
+                        <label style="font-size:12px;color:#555;">اليوم:</label>
+                        <select id="driverDaySelect" onchange="updateDriverOrdersDate()"></select>
+                        <select id="driverMonthSelect" onchange="updateDriverOrdersDate()"></select>
+                        <select id="driverYearSelect" onchange="updateDriverOrdersDate()"></select>
+                        <span id="activeDriverDateLabel" style="font-size:12px;color:#666; margin-inline-start:6px;"></span>
+                    </div>
+                    <button class="btn-primary" onclick="exportDriversReport()">
+                        📄 تصدير تقرير Excel
+                    </button>
+                    <button class="btn-success" onclick="location.reload()">
+                        🔄 تحديث
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grand Total -->
+            <div class="grand-total-card">
+                <h2>إجمالي المبالغ النقدية من جميع السائقين</h2>
+                <p class="amount" id="grandTotal">0 دينار</p>
+            </div>
+
+            <!-- Drivers Orders List -->
+            <div id="driversOrdersList">
+                <p class="no-orders">جاري التحميل...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- XLSX Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- Supabase JS Library (UMD Bundle) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    
+    <!-- Secure Configuration (must load before other scripts) -->
+    <script src="supabase-secure-config.js"></script>
+    
+    <!-- Database Configuration & Functions -->
+    <script src="supabase-db.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="script.js"></script>
+    <script src="admin-secure.js"></script>
+    <script src="admin-mobile-dark.js"></script>
+    <script src="driver-orders.js"></script>
+    
+    <div style="position: fixed; bottom: 10px; left: 10px; font-size: 11px; opacity: 0.6; color: #666; font-family: 'Poppins', sans-serif;">
+        Coded by Zaid-Alnussirat
+    </div>
+</body>
+</html>
+
