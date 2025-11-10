@@ -312,10 +312,16 @@
                 return true;
             }
             
+            // Try to initialize from config
+            if (window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.init) {
+                supabase = await window.SUPABASE_CONFIG.init();
+                if (supabase) return true;
+            }
+            
             // Fallback: create client directly
-            if (window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
+            if (window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.URL && window.SUPABASE_CONFIG.KEY) {
                 const { createClient } = window.supabase;
-                supabase = createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+                supabase = createClient(window.SUPABASE_CONFIG.URL, window.SUPABASE_CONFIG.KEY);
                 return true;
             }
             

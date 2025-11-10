@@ -60,6 +60,8 @@ function getSupabaseClient() {
 
 // Export for use in other files
 if (typeof window !== 'undefined') {
+    window.SUPABASE_URL = SUPABASE_URL;
+    window.SUPABASE_ANON_KEY = SUPABASE_ANON_KEY;
     window.SUPABASE_CONFIG = {
         URL: SUPABASE_URL,
         KEY: SUPABASE_ANON_KEY,
