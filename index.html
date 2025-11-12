@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="logo.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="cinematic-theme-switcher.css">
+    <link rel="stylesheet" href="simple-theme-toggle.css">
 </head>
 <body>
     <!-- Page Transition Overlay -->
@@ -17,8 +17,8 @@
         <div class="page-transition-spinner"></div>
     </div>
     
-    <!-- Cinematic Theme Switcher -->
-    <div id="theme-switcher" data-cinematic-theme style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;"></div>
+    <!-- Simple Theme Toggle -->
+    <div data-theme-toggle></div>
 
     <div class="container">
         <header>
@@ -142,8 +142,8 @@
         <p class="footer-text">© 2025 مطعم ومطبخ الشيخ - جميع الحقوق محفوظة</p>
     </footer>
 
+    <script src="simple-theme-toggle.js"></script>
     <script src="script.js"></script>
-    <script src="cinematic-theme-switcher.js"></script>
     <script>
         // Track menu page view (since menu is now the default content)
         window.addEventListener('load', () => {

@@ -10,7 +10,7 @@
     <link rel="icon" href="logo.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="food-menu.css">
-    <link rel="stylesheet" href="cinematic-theme-switcher.css">
+    <link rel="stylesheet" href="simple-theme-toggle.css">
 </head>
 <body>
     <!-- Page Transition Overlay -->
@@ -18,8 +18,8 @@
         <div class="page-transition-spinner"></div>
     </div>
     
-    <!-- Cinematic Theme Switcher -->
-    <div id="theme-switcher" data-cinematic-theme style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;"></div>
+    <!-- Simple Theme Toggle -->
+    <div data-theme-toggle></div>
 
 
     <div class="container">
@@ -174,8 +174,8 @@
     <script src="supabase-config.js"></script>
     <script src="supabase-db.js"></script>
     
+    <script src="simple-theme-toggle.js"></script>
     <script src="script.js"></script>
-    <script src="cinematic-theme-switcher.js"></script>
     <script src="food-menu.js"></script>
     <script>
         // Track food menu page view

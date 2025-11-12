@@ -271,11 +271,16 @@ class CinematicThemeSwitcher {
 
 // Auto-initialize if data-cinematic-theme attribute exists
 document.addEventListener('DOMContentLoaded', () => {
-  const autoInit = document.querySelector('[data-cinematic-theme]');
-  if (autoInit) {
-    const id = autoInit.id || 'cinematic-theme-switcher';
-    autoInit.id = id;
-    window.cinematicThemeSwitcher = new CinematicThemeSwitcher(id);
+  try {
+    const autoInit = document.querySelector('[data-cinematic-theme]');
+    if (autoInit) {
+      const id = autoInit.id || 'cinematic-theme-switcher';
+      autoInit.id = id;
+      window.cinematicThemeSwitcher = new CinematicThemeSwitcher(id);
+    }
+  } catch (error) {
+    console.error('Cinematic Theme Switcher initialization error:', error);
+    // Don't block other scripts if theme switcher fails
   }
 });
 
