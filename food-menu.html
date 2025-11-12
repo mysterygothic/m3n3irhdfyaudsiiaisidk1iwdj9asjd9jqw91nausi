@@ -10,6 +10,7 @@
     <link rel="icon" href="logo.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="food-menu.css">
+    <link rel="stylesheet" href="cinematic-theme-switcher.css">
 </head>
 <body>
     <!-- Page Transition Overlay -->
@@ -17,11 +18,9 @@
         <div class="page-transition-spinner"></div>
     </div>
     
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <span class="theme-icon" id="themeIcon">🌙</span>
-        <span class="theme-text" id="themeText">وضع فاتح</span>
-    </button>
+    <!-- Cinematic Theme Switcher -->
+    <div id="theme-switcher" data-cinematic-theme style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;"></div>
+
 
     <div class="container">
         <header>
@@ -176,6 +175,7 @@
     <script src="supabase-db.js"></script>
     
     <script src="script.js"></script>
+    <script src="cinematic-theme-switcher.js"></script>
     <script src="food-menu.js"></script>
     <script>
         // Track food menu page view
