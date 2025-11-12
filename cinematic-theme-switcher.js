@@ -22,8 +22,11 @@ class CinematicThemeSwitcher {
     this.isAnimating = false;
     this.particles = [];
     
+    // Apply theme to document immediately (before UI is created)
+    this.applyThemeToDocument();
+    
     this.init();
-    this.applyTheme(false); // Apply initial theme without transition
+    this.applyTheme(false); // Apply to button after it's created
   }
 
   /**
@@ -171,34 +174,49 @@ class CinematicThemeSwitcher {
   }
 
   /**
-   * Apply theme to document and button
+   * Apply theme classes to document (html and body)
    */
-  applyTheme(animate = true) {
+  applyThemeToDocument() {
     const root = document.documentElement;
     const body = document.body;
     
     if (this.isDark) {
-      this.button.classList.remove('light');
-      this.button.classList.add('dark');
       root.classList.add('dark-theme');
       root.classList.remove('light-theme');
-      body.classList.add('dark-mode'); // For compatibility with existing admin styles
+      body.classList.add('dark-mode');
       body.classList.remove('light-mode');
     } else {
-      this.button.classList.remove('dark');
-      this.button.classList.add('light');
       root.classList.add('light-theme');
       root.classList.remove('dark-theme');
       body.classList.add('light-mode');
-      body.classList.remove('dark-mode'); // For compatibility with existing admin styles
+      body.classList.remove('dark-mode');
     }
+  }
 
-    // Add transition class if animating
-    if (animate) {
-      this.button.classList.add('transitioning');
-      setTimeout(() => {
-        this.button.classList.remove('transitioning');
-      }, 600);
+  /**
+   * Apply theme to document and button
+   */
+  applyTheme(animate = true) {
+    // Apply to document
+    this.applyThemeToDocument();
+    
+    // Apply to button if it exists
+    if (this.button) {
+      if (this.isDark) {
+        this.button.classList.remove('light');
+        this.button.classList.add('dark');
+      } else {
+        this.button.classList.remove('dark');
+        this.button.classList.add('light');
+      }
+
+      // Add transition class if animating
+      if (animate) {
+        this.button.classList.add('transitioning');
+        setTimeout(() => {
+          this.button.classList.remove('transitioning');
+        }, 600);
+      }
     }
   }
 

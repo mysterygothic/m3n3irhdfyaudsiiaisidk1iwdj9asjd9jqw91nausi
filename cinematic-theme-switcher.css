@@ -309,7 +309,6 @@ body {
 .cinematic-switcher-button.light .sun-icon-active {
   display: block;
   color: #f59e0b;
-  position: absolute;
 }
 
 .cinematic-switcher-button.light .moon-icon-active {
@@ -323,7 +322,6 @@ body {
 .cinematic-switcher-button.dark .moon-icon-active {
   display: block;
   color: #fef08a;
-  position: absolute;
 }
 
 /* ============================================
