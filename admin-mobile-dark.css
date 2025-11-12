@@ -85,50 +85,50 @@
 
 /* ==================== DARK MODE STYLES ==================== */
 body.dark-mode {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
 }
 
 .dark-mode .admin-container {
-    background: #0f1419;
+    background: #0a0a0a;
 }
 
 .dark-mode .admin-sidebar {
-    background: #1a1f2e;
+    background: #1a1a1a;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .dark-mode .admin-sidebar-header {
-    border-bottom-color: #2d3748;
+    border-bottom-color: #2a2a2a;
 }
 
 .dark-mode .admin-sidebar-header h2 {
-    color: #e2e8f0;
+    color: #ffffff;
 }
 
 .dark-mode .admin-nav-item {
-    color: #a0aec0;
+    color: #b0b0b0;
 }
 
 .dark-mode .admin-nav-item:hover {
-    background: #2d3748;
+    background: #2a2a2a;
     color: #667eea;
 }
 
 .dark-mode .admin-nav-item.active {
-    background: #2d3748;
+    background: #2a2a2a;
     color: #667eea;
 }
 
 .dark-mode .admin-main {
-    background: #0f1419;
+    background: #0a0a0a;
 }
 
 .dark-mode .section-header {
-    border-bottom-color: #2d3748;
+    border-bottom-color: #2a2a2a;
 }
 
 .dark-mode .section-header h2 {
-    color: #e2e8f0;
+    color: #ffffff;
 }
 
 /* Cards & Containers */
@@ -141,7 +141,7 @@ body.dark-mode {
 .dark-mode .quick-entry-section,
 .dark-mode .drivers-summary,
 .dark-mode .delivery-orders-container {
-    background: #1a1f2e;
+    background: #1a1a1a;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -150,36 +150,36 @@ body.dark-mode {
 .dark-mode .stat-card h3,
 .dark-mode .form-header h3,
 .dark-mode .order-header h4 {
-    color: #e2e8f0;
+    color: #ffffff;
 }
 
 .dark-mode .admin-item-description,
 .dark-mode .category-info p,
 .dark-mode .order-details p {
-    color: #a0aec0;
+    color: #b0b0b0;
 }
 
 .dark-mode .order-details strong {
-    color: #e2e8f0;
+    color: #ffffff;
 }
 
 /* Tables */
 .dark-mode .ramadan-orders-table th {
-    background: #2d3748;
-    color: #e2e8f0;
+    background: #2a2a2a;
+    color: #ffffff;
 }
 
 .dark-mode .ramadan-orders-table td {
-    color: #cbd5e0;
-    border-bottom-color: #2d3748;
+    color: #e0e0e0;
+    border-bottom-color: #2a2a2a;
 }
 
 .dark-mode .ramadan-orders-table tbody tr:hover {
-    background: #2d3748;
+    background: #2a2a2a;
 }
 
 .dark-mode .ramadan-orders-table td strong {
-    color: #e2e8f0;
+    color: #ffffff;
 }
 
 /* Forms */
@@ -187,7 +187,7 @@ body.dark-mode {
 .dark-mode .ramadan-customer-form label,
 .dark-mode .quick-entry-form label,
 .dark-mode .driver-assignment label {
-    color: #e2e8f0;
+    color: #ffffff;
 }
 
 .dark-mode .admin-form input,
@@ -199,9 +199,9 @@ body.dark-mode {
 .dark-mode .quick-entry-form input,
 .dark-mode .quick-entry-form select,
 .dark-mode .driver-select {
-    background: #2d3748;
-    border-color: #4a5568;
-    color: #e2e8f0;
+    background: #2a2a2a;
+    border-color: #3a3a3a;
+    color: #ffffff;
 }
 
 .dark-mode .admin-form input:focus,
@@ -213,8 +213,8 @@ body.dark-mode {
 }
 
 .dark-mode .radio-label {
-    border-color: #4a5568;
-    color: #e2e8f0;
+    border-color: #3a3a3a;
+    color: #ffffff;
 }
 
 .dark-mode .radio-label:hover {
@@ -222,38 +222,38 @@ body.dark-mode {
 }
 
 .dark-mode .form-section {
-    border-color: #4a5568;
+    border-color: #3a3a3a;
 }
 
 .dark-mode .form-section h3 {
-    color: #e2e8f0;
+    color: #ffffff;
 }
 
 /* Theme Toggle in Dark Mode */
 .dark-mode .theme-toggle-container {
-    border-top-color: #2d3748;
+    border-top-color: #2a2a2a;
 }
 
 .dark-mode .theme-toggle {
-    background: #2d3748;
+    background: #2a2a2a;
 }
 
 .dark-mode .theme-toggle:hover {
-    background: #3a4556;
+    background: #3a3a3a;
 }
 
 .dark-mode .theme-toggle-label {
-    color: #e2e8f0;
+    color: #ffffff;
 }
 
 /* Other Elements */
 .dark-mode .empty-state {
-    color: #718096;
+    color: #808080;
 }
 
 .dark-mode .delivery-order-card {
-    background: #1a1f2e;
-    border-color: #2d3748;
+    background: #1a1a1a;
+    border-color: #2a2a2a;
 }
 
 .dark-mode .delivery-order-card:hover {
@@ -261,7 +261,7 @@ body.dark-mode {
 }
 
 .dark-mode .order-header {
-    border-bottom-color: #2d3748;
+    border-bottom-color: #2a2a2a;
 }
 
 /* ==================== MOBILE RESPONSIVE ==================== */

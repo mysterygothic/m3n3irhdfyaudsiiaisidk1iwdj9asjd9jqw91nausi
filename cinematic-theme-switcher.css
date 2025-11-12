@@ -23,12 +23,12 @@
 
 /* Dark Theme Colors */
 .dark-theme {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-tertiary: #94a3b8;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-tertiary: #b0b0b0;
 }
 
 /* Apply theme transitions to body */
@@ -103,7 +103,7 @@ body {
 
 /* Dark Mode Button Styles */
 .cinematic-switcher-button.dark {
-  background: radial-gradient(ellipse at top left, #1e293b 0%, #0f172a 40%, #020617 100%);
+  background: radial-gradient(ellipse at top left, #2a2a2a 0%, #1a1a1a 40%, #0a0a0a 100%);
   box-shadow: 
     inset 5px 5px 12px rgba(0, 0, 0, 0.9),
     inset -5px -5px 12px rgba(71, 85, 105, 0.4),
@@ -180,12 +180,25 @@ body {
 /* Background Icons */
 .cinematic-switcher-bg-icons {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   pointer-events: none;
+}
+
+.cinematic-switcher-bg-icons .sun-icon {
+  position: absolute;
+  left: 16px;
+}
+
+.cinematic-switcher-bg-icons .moon-icon {
+  position: absolute;
+  right: 16px;
 }
 
 .cinematic-switcher-button.light .sun-icon {
