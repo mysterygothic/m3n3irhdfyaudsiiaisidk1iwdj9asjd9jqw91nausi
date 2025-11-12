@@ -46,6 +46,9 @@ body {
 .cinematic-switcher-wrapper {
   position: relative;
   display: inline-block;
+  /* Ensure wrapper doesn't interfere with parent positioning */
+  width: fit-content;
+  height: fit-content;
 }
 
 /* Hide SVG filters */
@@ -194,27 +197,36 @@ body {
 .cinematic-switcher-bg-icons .sun-icon {
   position: absolute;
   left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .cinematic-switcher-bg-icons .moon-icon {
   position: absolute;
   right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.cinematic-switcher-button.light .sun-icon {
+/* Background icon colors - always visible but dimmed */
+.cinematic-switcher-button.light .cinematic-switcher-bg-icons .sun-icon {
   color: #d97706;
+  opacity: 0.5;
 }
 
-.cinematic-switcher-button.light .moon-icon {
-  color: #334155;
+.cinematic-switcher-button.light .cinematic-switcher-bg-icons .moon-icon {
+  color: #64748b;
+  opacity: 0.3;
 }
 
-.cinematic-switcher-button.dark .sun-icon {
-  color: #fef3c7;
+.cinematic-switcher-button.dark .cinematic-switcher-bg-icons .sun-icon {
+  color: #fbbf24;
+  opacity: 0.3;
 }
 
-.cinematic-switcher-button.dark .moon-icon {
-  color: #fef3c7;
+.cinematic-switcher-button.dark .cinematic-switcher-bg-icons .moon-icon {
+  color: #fef08a;
+  opacity: 0.5;
 }
 
 /* ============================================
