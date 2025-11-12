@@ -20,7 +20,8 @@
             'admin-customers.html',
             'admin-inventory.html',
             'admin-users.html',
-            'admin-ai-assistant.html'
+            'admin-ai-assistant.html',
+            'admin-log.html'
         ]
     };
     

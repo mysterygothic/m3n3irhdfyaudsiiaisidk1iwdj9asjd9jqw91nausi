@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سجل الأدمن - Admin Log</title>
     <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin-mobile-dark.css">
+    <link rel="stylesheet" href="cinematic-theme-switcher.css">
     <style>
         .log-container {
             max-width: 1200px;
@@ -235,6 +239,8 @@
 
     <!-- Main Content (Hidden until password verified) -->
     <div id="mainContent" style="display: none;">
+        <!-- Cinematic Theme Switcher -->
+        <div id="admin-theme-switcher" data-cinematic-theme style="position: fixed; bottom: 20px; left: 20px; z-index: 900;"></div>
         <div class="log-container">
             <!-- Header -->
             <div class="log-header">
@@ -550,5 +556,6 @@
             document.getElementById('logPassword')?.focus();
         });
     </script>
+    <script src="cinematic-theme-switcher.js"></script>
 </body>
 </html>

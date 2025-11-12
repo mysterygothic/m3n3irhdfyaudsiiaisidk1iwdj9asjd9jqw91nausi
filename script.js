@@ -28,15 +28,14 @@ function toggleTheme() {
 
 function updateThemeUI(theme) {
     const themeIcon = document.getElementById('themeIcon');
-    const themeText = document.getElementById('themeText');
     
-    if (themeIcon && themeText) {
+    if (themeIcon) {
         if (theme === 'light') {
-            themeIcon.textContent = '';
-            themeText.textContent = 'وضع داكن';
+            // Show moon icon when in light mode (clicking will switch to dark)
+            themeIcon.textContent = '🌙';
         } else {
-            themeIcon.textContent = '';
-            themeText.textContent = 'وضع فاتح';
+            // Show sun icon when in dark mode (clicking will switch to light)
+            themeIcon.textContent = '☀️';
         }
     }
 }

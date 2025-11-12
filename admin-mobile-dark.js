@@ -31,7 +31,7 @@
     // ==================== DOM INITIALIZATION ====================
     document.addEventListener('DOMContentLoaded', function() {
         initMobileMenu();
-        initThemeToggle();
+        // Theme toggle is now handled by cinematic-theme-switcher.js
     });
     
     // ==================== MOBILE MENU ====================
@@ -101,104 +101,8 @@
     }
     
     // ==================== THEME TOGGLE ====================
-    function initThemeToggle() {
-        // Create theme toggle (fixed position, not in sidebar)
-        const themeContainer = document.createElement('div');
-        themeContainer.className = 'theme-toggle-container';
-        
-        const currentTheme = getTheme();
-        const isDark = currentTheme === 'dark';
-        
-        themeContainer.innerHTML = `
-            <div class="theme-toggle ${isDark ? 'active' : ''}" id="themeToggle" role="button" tabindex="0" aria-label="تبديل الوضع ${isDark ? 'الفاتح' : 'المظلم'}" title="${isDark ? 'الوضع الفاتح' : 'الوضع المظلم'}">
-                <span class="theme-icon">${isDark ? '🌙' : '☀️'}</span>
-            </div>
-        `;
-        
-        document.body.appendChild(themeContainer);
-        
-        const themeToggle = document.getElementById('themeToggle');
-        
-        themeToggle.addEventListener('click', toggleTheme);
-        
-        // Keyboard support
-        themeToggle.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleTheme();
-            }
-        });
-        
-        function toggleTheme() {
-            const currentTheme = getTheme();
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
-            setTheme(newTheme);
-            updateToggleUI(newTheme);
-            
-            // Show brief notification
-            showThemeNotification(newTheme);
-        }
-        
-        function updateToggleUI(theme) {
-            const themeToggle = document.getElementById('themeToggle');
-            const isDark = theme === 'dark';
-            
-            if (isDark) {
-                themeToggle.classList.add('active');
-            } else {
-                themeToggle.classList.remove('active');
-            }
-            
-            const icon = themeToggle.querySelector('.theme-icon');
-            
-            if (icon) {
-                icon.textContent = isDark ? '🌙' : '☀️';
-            }
-            
-            themeToggle.setAttribute('aria-label', `تبديل الوضع ${isDark ? 'الفاتح' : 'المظلم'}`);
-            themeToggle.setAttribute('title', isDark ? 'الوضع الفاتح' : 'الوضع المظلم');
-        }
-        
-        function showThemeNotification(theme) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 80px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: ${theme === 'dark' ? '#2d3748' : 'white'};
-                color: ${theme === 'dark' ? '#e2e8f0' : '#333'};
-                padding: 12px 24px;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-                z-index: 10000;
-                font-family: 'IBM Plex Sans Arabic', sans-serif;
-                font-weight: 500;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            `;
-            
-            notification.textContent = theme === 'dark' ? 
-                '🌙 تم تفعيل الوضع المظلم' : 
-                '☀️ تم تفعيل الوضع الفاتح';
-            
-            document.body.appendChild(notification);
-            
-            // Fade in
-            setTimeout(() => {
-                notification.style.opacity = '1';
-            }, 10);
-            
-            // Fade out and remove
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 2000);
-        }
-    }
+    // Theme toggle is now handled by cinematic-theme-switcher.js
+    // This section is kept for backward compatibility with theme storage
     
     // ==================== UTILITIES ====================
     
