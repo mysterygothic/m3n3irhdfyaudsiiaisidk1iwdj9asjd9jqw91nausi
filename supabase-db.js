@@ -13,6 +13,13 @@ let useLocalStorageFallback = false;
 // Initialize Supabase connection
 async function initializeDatabase() {
     try {
+        // Wait for SUPABASE_SECURE to be available
+        let retries = 0;
+        while (!window.SUPABASE_SECURE && retries < 10) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            retries++;
+        }
+        
         // Use the new secure configuration
         if (window.SUPABASE_SECURE && window.SUPABASE_SECURE.getClient) {
             supabase = window.SUPABASE_SECURE.getClient();
@@ -38,8 +45,8 @@ async function initializeDatabase() {
 }
 
 // Auto-initialize on load
-document.addEventListener('DOMContentLoaded', function() {
-    initializeDatabase();
+document.addEventListener('DOMContentLoaded', async function() {
+    await initializeDatabase();
 });
 
 // ========== ADMIN LOGGING ==========
