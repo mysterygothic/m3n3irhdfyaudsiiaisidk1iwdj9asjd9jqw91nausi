@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - مطعم ومطبخ الشيخ</title>
+    
+    <!-- Tabler CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler-flags.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler-payments.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler-vendors.min.css" rel="stylesheet"/>
+    
+    <!-- Tabler Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet"/>
+    
+    <!-- Arabic Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="logo.png" type="image/png">
+    
+    <!-- RTL Support & Custom Styles -->
+    <style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        /* RTL Adjustments for Tabler */
+        [dir="rtl"] .navbar-vertical {
+            right: 0;
+            left: auto;
+            border-left: 1px solid var(--tblr-border-color);
+            border-right: none;
+        }
+        
+        [dir="rtl"] .navbar-vertical.navbar-expand-lg {
+            right: 0;
+        }
+        
+        [dir="rtl"] .navbar-vertical ~ .page {
+            padding-right: 15rem;
+            padding-left: 0;
+        }
+        
+        [dir="rtl"] .nav-link-icon {
+            margin-left: 0.5rem;
+            margin-right: 0;
+        }
+        
+        [dir="rtl"] .page-header {
+            text-align: right;
+        }
+        
+        [dir="rtl"] .btn {
+            text-align: center;
+        }
+        
+        /* Hide body until auth check */
+        body.checking-auth {
+            display: none;
+        }
+        
+        /* Menu Items Grid */
+        .menu-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .menu-item-card {
+            transition: transform 0.2s;
+        }
+        
+        .menu-item-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .menu-item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        /* Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        /* Modal Backdrop */
+        .modal-backdrop-custom {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
+            display: none;
+        }
+        
+        .modal-backdrop-custom.show {
+            display: block;
+        }
+        
+        /* Custom Modal */
+        .modal-custom {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1050;
+            display: none;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-custom.show {
+            display: block;
+        }
+        
+        /* Image Preview */
+        .image-preview {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .image-preview img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        
+        /* Quantity Options */
+        .quantity-option-row {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1.5fr auto;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+    </style>
+    
+    <!-- Security Protection - MUST be first -->
+    <script src="admin-protection.js"></script>
+    <script src="admin-permissions.js"></script>
+</head>
+<body class="checking-auth">
+    <!-- Navigation Sidebar -->
+    <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <h1 class="navbar-brand navbar-brand-autodark">
+                <a href=".">
+                    <img src="logo.png" width="110" height="32" alt="Logo" class="navbar-brand-image">
+                    لوحة التحكم
+                </a>
+            </h1>
+            
+            <div class="navbar-nav flex-row d-lg-none">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown">
+                        <span class="avatar avatar-sm"></span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="collapse navbar-collapse" id="sidebar-menu">
+                <ul class="navbar-nav pt-lg-3">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" onclick="showSection('menu-management'); return false;">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-layout-grid"></i>
+                            </span>
+                            <span class="nav-link-title">إدارة المنيو</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('categories'); return false;">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-category"></i>
+                            </span>
+                            <span class="nav-link-title">إدارة الفئات</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-ramadan.html">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-moon-stars"></i>
+                            </span>
+                            <span class="nav-link-title">طلبات رمضان</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-delivery.html">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-truck-delivery"></i>
+                            </span>
+                            <span class="nav-link-title">إدارة التوصيل</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-driver-orders.html">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-car"></i>
+                            </span>
+                            <span class="nav-link-title">طلبات السائقين</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-customers.html">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-users"></i>
+                            </span>
+                            <span class="nav-link-title">معلومات الزبائن</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-inventory.html">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-clipboard-list"></i>
+                            </span>
+                            <span class="nav-link-title">الجرد اليومي</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-users.html">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-user-shield"></i>
+                            </span>
+                            <span class="nav-link-title">Admin Users</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-ai-assistant.html">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-robot"></i>
+                            </span>
+                            <span class="nav-link-title">AI Assistant</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-log.html">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-file-text"></i>
+                            </span>
+                            <span class="nav-link-title">Admin Log</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="adminLogout(); return false;">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-logout"></i>
+                            </span>
+                            <span class="nav-link-title">تسجيل الخروج</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <div class="page">
+        <div class="page-wrapper">
+            <!-- Menu Management Section -->
+            <div class="page-header d-print-none" id="menu-management-section">
+                <div class="container-xl">
+                    <div class="row g-2 align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">إدارة المنيو</h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <div class="btn-list">
+                                <button class="btn btn-success d-none d-sm-inline-block" onclick="exportMenuFile()">
+                                    <i class="ti ti-download icon"></i>
+                                    تصدير food-menu.js
+                                </button>
+                                <button class="btn btn-primary d-none d-sm-inline-block" onclick="openAddItemModal()">
+                                    <i class="ti ti-plus icon"></i>
+                                    إضافة صنف جديد
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-body" id="menu-management-body">
+                <div class="container-xl">
+                    <!-- Category Filter -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="btn-list" id="categoryFilterButtons">
+                                <button class="btn btn-outline-primary active" onclick="filterMenuItems('all')">الكل</button>
+                                <!-- Categories will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Menu Items Grid -->
+                    <div class="menu-items-grid" id="adminMenuItems">
+                        <!-- Items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Categories Management Section -->
+            <div class="page-header d-print-none" id="categories-section" style="display: none;">
+                <div class="container-xl">
+                    <div class="row g-2 align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">إدارة الفئات</h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <button class="btn btn-primary" onclick="openAddCategoryModal()">
+                                <i class="ti ti-plus icon"></i>
+                                إضافة فئة جديدة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-body" id="categories-body" style="display: none;">
+                <div class="container-xl">
+                    <div class="categories-grid" id="categoriesList">
+                        <!-- Categories will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <div class="row text-center align-items-center">
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    Coded by Zaid-Alnussirat
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <!-- Modal Backdrop -->
+    <div class="modal-backdrop-custom" id="modalBackdrop"></div>
+    
+    <!-- Add/Edit Item Modal -->
+    <div class="modal-custom" id="itemModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="itemModalTitle">إضافة صنف جديد</h5>
+                    <button type="button" class="btn-close" onclick="closeItemModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="itemForm">
+                        <input type="hidden" id="itemId" name="itemId">
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">اسم الصنف</label>
+                                <input type="text" class="form-control" id="itemName" name="itemName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label required">الفئة</label>
+                                <select class="form-select" id="itemCategory" name="itemCategory" required>
+                                    <!-- Categories will be populated by JavaScript -->
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label required">الوصف</label>
+                            <textarea class="form-control" id="itemDescription" name="itemDescription" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label required">السعر الأساسي (دينار)</label>
+                            <input type="number" class="form-control" id="itemBasePrice" name="itemBasePrice" step="0.5" min="0" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label required">صورة الدجاج</label>
+                            <input type="file" class="form-control" id="itemImage" name="itemImage" accept="image/*" onchange="previewImage(event, 'chickenPreview')">
+                            <div class="image-preview" id="chickenPreview"></div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">صورة اللحم</label>
+                            <input type="file" class="form-control" id="itemImageMeat" name="itemImageMeat" accept="image/*" onchange="previewImage(event, 'meatPreview')">
+                            <div class="image-preview" id="meatPreview"></div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h3 class="card-title">خيارات الكمية (دجاج)</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="chickenQuantityOptions">
+                                    <div class="quantity-option-row">
+                                        <input type="text" class="form-control" placeholder="اسم الخيار" class="chicken-qty-label">
+                                        <input type="text" class="form-control" placeholder="القيمة" class="chicken-qty-value">
+                                        <input type="number" class="form-control" placeholder="السعر" step="0.5" class="chicken-qty-price">
+                                        <button type="button" class="btn btn-icon btn-danger" onclick="removeQuantityRow(this)">
+                                            <i class="ti ti-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-secondary mt-2" onclick="addChickenQuantityRow()">
+                                    <i class="ti ti-plus icon"></i>
+                                    إضافة خيار
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h3 class="card-title">خيارات الكمية (لحم)</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="meatQuantityOptions">
+                                    <div class="quantity-option-row">
+                                        <input type="text" class="form-control" placeholder="اسم الخيار" class="meat-qty-label">
+                                        <input type="text" class="form-control" placeholder="القيمة" class="meat-qty-value">
+                                        <input type="number" class="form-control" placeholder="السعر" step="0.5" class="meat-qty-price">
+                                        <button type="button" class="btn btn-icon btn-danger" onclick="removeQuantityRow(this)">
+                                            <i class="ti ti-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-secondary mt-2" onclick="addMeatQuantityRow()">
+                                    <i class="ti ti-plus icon"></i>
+                                    إضافة خيار
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link link-secondary" onclick="closeItemModal()">إلغاء</button>
+                    <button type="button" class="btn btn-primary ms-auto" onclick="document.getElementById('itemForm').dispatchEvent(new Event('submit'))">
+                        <i class="ti ti-device-floppy icon"></i>
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add/Edit Category Modal -->
+    <div class="modal-custom" id="categoryModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoryModalTitle">إضافة فئة جديدة</h5>
+                    <button type="button" class="btn-close" onclick="closeCategoryModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="categoryForm">
+                        <input type="hidden" id="categoryId" name="categoryId">
+                        
+                        <div class="mb-3">
+                            <label class="form-label required">اسم الفئة (عربي)</label>
+                            <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label required">القيمة (بالإنجليزي)</label>
+                            <input type="text" class="form-control" id="categoryValue" name="categoryValue" required placeholder="مثال: sudor">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link link-secondary" onclick="closeCategoryModal()">إلغاء</button>
+                    <button type="button" class="btn btn-primary ms-auto" onclick="document.getElementById('categoryForm').dispatchEvent(new Event('submit'))">
+                        <i class="ti ti-device-floppy icon"></i>
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tabler Core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"></script>
+    
+    <!-- Supabase JS Library (UMD Bundle) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    
+    <!-- Secure Configuration (must load before other scripts) -->
+    <script src="supabase-secure-config.js"></script>
+    
+    <!-- Database Configuration & Functions -->
+    <script src="supabase-db.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="script.js"></script>
+    <script src="admin-secure.js"></script>
+    <script src="admin-tabler-adapter.js"></script>
+    
+    <!-- Tabler-specific JavaScript -->
+    <script>
+        // Section Management
+        function showSection(sectionName) {
+            // Hide all sections
+            document.getElementById('menu-management-section').style.display = 'none';
+            document.getElementById('menu-management-body').style.display = 'none';
+            document.getElementById('categories-section').style.display = 'none';
+            document.getElementById('categories-body').style.display = 'none';
+            
+            // Show selected section
+            if (sectionName === 'menu-management') {
+                document.getElementById('menu-management-section').style.display = 'block';
+                document.getElementById('menu-management-body').style.display = 'block';
+            } else if (sectionName === 'categories') {
+                document.getElementById('categories-section').style.display = 'block';
+                document.getElementById('categories-body').style.display = 'block';
+            }
+            
+            // Update active nav item
+            document.querySelectorAll('.navbar-nav .nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.nav-item').classList.add('active');
+        }
+        
+        // Modal Management
+        function openAddItemModal() {
+            document.getElementById('itemModal').classList.add('show');
+            document.getElementById('modalBackdrop').classList.add('show');
+        }
+        
+        function closeItemModal() {
+            document.getElementById('itemModal').classList.remove('show');
+            document.getElementById('modalBackdrop').classList.remove('show');
+        }
+        
+        function openAddCategoryModal() {
+            document.getElementById('categoryModal').classList.add('show');
+            document.getElementById('modalBackdrop').classList.add('show');
+        }
+        
+        function closeCategoryModal() {
+            document.getElementById('categoryModal').classList.remove('show');
+            document.getElementById('modalBackdrop').classList.remove('show');
+        }
+        
+        // Show body after auth check
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.remove('checking-auth');
+        });
+    </script>
+</body>
+</html>
