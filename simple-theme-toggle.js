@@ -59,6 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
       icon.textContent = '🌙';
     }
     
+    // Force browser to recalculate styles
+    void root.offsetHeight;
+    
     // Save to localStorage
     localStorage.setItem('theme', newTheme);
     localStorage.setItem('admin_theme', newTheme);

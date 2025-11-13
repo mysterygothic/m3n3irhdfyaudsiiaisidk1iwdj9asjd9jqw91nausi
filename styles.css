@@ -56,7 +56,10 @@ body {
     }
 }
 
-:root {
+/* Default dark theme */
+:root,
+:root.dark-theme,
+html.dark-theme {
     --bg-primary: #0f0f0f;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #2d2d2d;
@@ -70,8 +73,10 @@ body {
     --shadow: rgba(0, 0, 0, 0.3);
 }
 
+/* Light theme */
+:root.light-theme,
+html.light-theme,
 [data-theme="light"],
-.light-theme,
 body.light-mode {
     --bg-primary: #fefefe;
     --bg-secondary: #f5f5f5;
